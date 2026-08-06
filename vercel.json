@@ -1,0 +1,6 @@
+{
+  "buildCommand": "echo 'static site \u2014 no build step'",
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
