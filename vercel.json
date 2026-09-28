@@ -1,6 +1,50 @@
 {
-  "buildCommand": "echo 'static site \u2014 no build step'",
-  "outputDirectory": ".",
+  "outputDirectory": "site",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/post-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/author/team",
+      "destination": "/#blog",
+      "permanent": true
+    },
+    {
+      "source": "/category/uncategorized",
+      "destination": "/#blog",
+      "permanent": true
+    },
+    {
+      "source": "/project",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-2/",
+      "destination": "/contact/",
+      "permanent": true
+    }
+  ],
+  "buildCommand": "",
+  "installCommand": "",
+  "framework": null
 }
