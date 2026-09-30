@@ -4,3 +4,18 @@ const results=document.querySelector('#search-results');if(results){const q=new 
 // Site-branded enquiry card; no contractor assignment is implied.
 const contactCard=document.querySelector('#sparkys-contact');
 if(contactCard){let preference=null;try{preference=sessionStorage.getItem('sparkys-contact-open')}catch{}contactCard.open=preference===null?matchMedia('(min-width: 850px)').matches:preference==='true';contactCard.addEventListener('toggle',()=>{try{sessionStorage.setItem('sparkys-contact-open',String(contactCard.open))}catch{}});contactCard.querySelector('.contact-close').addEventListener('click',()=>{contactCard.open=false;contactCard.querySelector('summary').focus()});}
+
+// A genuinely silent file; reduced-motion/data preferences start with the poster.
+const headerVideo=document.querySelector('#sparkys-header-video');
+if(headerVideo){
+ const toggle=document.querySelector('.header-film-toggle');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const update=()=>{toggle.textContent=headerVideo.paused?'Play header video':'Pause header video';};
+ const play=()=>{if(!headerVideo.getAttribute('src'))headerVideo.src=headerVideo.dataset.src;headerVideo.muted=true;headerVideo.play().catch(update);};
+ headerVideo.muted=true;
+ headerVideo.addEventListener('play',update);headerVideo.addEventListener('pause',update);headerVideo.addEventListener('error',()=>{toggle.hidden=true;});
+ toggle.addEventListener('click',()=>headerVideo.paused?play():headerVideo.pause());
+ reduced.addEventListener('change',event=>{if(event.matches)headerVideo.pause();});
+ if(!reduced.matches&&!navigator.connection?.saveData){const observer=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){play();observer.disconnect();}},{threshold:0.1});observer.observe(headerVideo);}
+ update();
+}
