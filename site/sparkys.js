@@ -10,7 +10,7 @@ const headerVideo=document.querySelector('#sparkys-header-video');
 if(headerVideo){
  const toggle=document.querySelector('.header-film-toggle');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const update=()=>{toggle.textContent=headerVideo.paused?'Play header video':'Pause header video';};
+ const update=()=>{toggle.textContent=headerVideo.paused?'Play hero video':'Pause hero video';toggle.setAttribute('aria-pressed',String(headerVideo.paused));};
  const play=()=>{if(!headerVideo.getAttribute('src'))headerVideo.src=headerVideo.dataset.src;headerVideo.muted=true;headerVideo.play().catch(update);};
  headerVideo.muted=true;
  headerVideo.addEventListener('play',update);headerVideo.addEventListener('pause',update);headerVideo.addEventListener('error',()=>{toggle.hidden=true;});
